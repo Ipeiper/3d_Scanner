@@ -13,11 +13,11 @@ writeline(s,"Start")
 
 %initialize a timeout in case MATLAB cannot connect to the arduino
 timeout = 0;
-i = 0;
-a=zeros(1,2460);
-b=zeros(1,2460);
-c=zeros(1,2460);
-d=zeros(1,2460);
+
+a=[];
+b=[];
+c=[];
+d=[];
 % main loop to read data from the Arduino, then display it%
 while timeout < 5 % % check if data was received %
 while s.NumBytesAvailable > 0
@@ -32,15 +32,15 @@ values = eval(strcat('[',readline(s),']'));
 %
 % if you want to store the integers in four variables
 %
-a(i) = values(1);
-b(i) = values(2);
-c(i) = values(3);
-d(i) = values(4);
+a(end+1) = values(1);
+b(end+1) = values(2);
+c(end+1) = values(3);
+d(end+1) = values(4);
 %
 % print the results
 %
 %disp(sprintf('a,b,c,d = %d,%d,%d,%d\n',[a,b,c,d]));
-i = i+1;
+
 end
 pause(0.5);
 timeout = timeout + 1;
